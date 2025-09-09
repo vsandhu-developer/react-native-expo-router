@@ -1,9 +1,9 @@
-import { Text, View } from "react-native";
+import { SafeAreaView, Text } from "react-native";
 
 export default function ExploreScreen() {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Explore Page</Text>
-    </View>
+    </SafeAreaView>
   );
 }

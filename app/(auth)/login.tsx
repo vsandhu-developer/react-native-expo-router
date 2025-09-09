@@ -1,8 +1,20 @@
+import { useAuth } from "@/context/authContext";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function LoginScreen() {
   const router = useRouter();
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleLogin = () => {
+    login({ email, password });
+    router.push("/(tabs)");
+  };
+
   return (
     <View
       style={{
@@ -25,6 +37,7 @@ export default function LoginScreen() {
           borderColor: "lightgrey",
           color: "black",
         }}
+        onChangeText={(text) => setEmail(text)}
       />
 
       <TextInput
@@ -37,10 +50,12 @@ export default function LoginScreen() {
           borderColor: "lightgrey",
           color: "black",
         }}
+        onChangeText={(text) => setPassword(text)}
       />
 
       <TouchableOpacity
         style={{ padding: 18, backgroundColor: "black", borderRadius: 10 }}
+        onPress={handleLogin}
       >
         <Text style={{ color: "white", textAlign: "center" }}>Login</Text>
       </TouchableOpacity>
